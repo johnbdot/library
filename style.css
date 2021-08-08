@@ -6,7 +6,6 @@
   box-sizing: border-box;
 }
 body {
-  height: 100vh;
   background-color: #f0efeb;
   font-family: "Merriweather", serif;
 }
@@ -17,8 +16,5 @@ body {
   vertical-align: middle;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
   text-align: center;
 }
