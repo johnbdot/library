@@ -67,26 +67,44 @@
 // const t1 = performance.now();
 // console.log(`Call to .glasses took ${t1 - t0} milliseconds.`);
 
-let hamster = {
-  stomach: [],
+// let hamster = {
+//   stomach: [],
 
-  eat(food) {
-    this.stomach.push(food);
-  },
+//   eat(food) {
+//     this.stomach.push(food);
+//   },
+// };
+
+// let speedy = {
+//   __proto__: hamster,
+// };
+
+// let lazy = {
+//   __proto__: hamster,
+//   stomach: [],
+// };
+
+// // This one found the food
+// speedy.eat("apple");
+// console.log(speedy.stomach); // apple
+
+// // This one also has it, why? fix please.
+// console.log(lazy.stomach); // apple
+
+function Student() {}
+
+Student.prototype.sayName = function () {
+  console.log(this.name);
 };
 
-let speedy = {
-  __proto__: hamster,
-};
+function EighthGrader(name) {
+  this.name = name;
+  this.grade = 8;
+}
 
-let lazy = {
-  __proto__: hamster,
-  stomach: [],
-};
+EighthGrader.prototype = Object.create(Student.prototype);
 
-// This one found the food
-speedy.eat("apple");
-console.log(speedy.stomach); // apple
-
-// This one also has it, why? fix please.
-console.log(lazy.stomach); // apple
+const carl = new EighthGrader("carl");
+carl.sayName(); // console.logs "carl"
+console.log(carl.grade); // 8
+console.log(carl.name);
