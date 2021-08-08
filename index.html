@@ -66,7 +66,7 @@
                   class="form-select form-select-sm"
                   aria-label=".form-select-sm example"
                 >
-                  <option selected>Status</option>
+                  <option selected disabled>Status</option>
                   <option value="Reading">Reading</option>
                   <option value="Not Read">Not Read</option>
                   <option value="Read">Read</option>
@@ -74,7 +74,7 @@
               </div>
             </div>
             <div class="mb-3">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Add Book</button>
             </div>
           </form>
 
@@ -86,7 +86,7 @@
                   <th>Author</th>
                   <th>Pages</th>
                   <th>Status</th>
-                  <th>Remove</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -95,21 +95,33 @@
                   <td>J.R.R Tolkien</td>
                   <td>295</td>
                   <td>Not Read</td>
-                  <td></td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-sm">
+                      Delete
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <td>She Who Became the Sun</td>
                   <td>Shelley Parker-Chan</td>
                   <td>416</td>
                   <td>Not Read</td>
-                  <td></td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-sm">
+                      Delete
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <td>Capture the Crown</td>
                   <td>Jennifer Estep</td>
                   <td>464</td>
                   <td>Not Read</td>
-                  <td></td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-sm">
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
