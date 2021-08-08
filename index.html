@@ -9,8 +9,47 @@
   </head>
   <body>
     <div class="container">
-      <div class="title">Library</div>
-      <div class="add-button">AddButton</div>
+      <div class="intro">
+        <h1>Library</h1>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum
+        dignissimos porro nisi exercitationem corrupti, obcaecati voluptatibus
+        commodi, atque enim veritatis vel, asperiores mollitia in ipsa.
+      </div>
+
+      <div class="user-input">
+        <form action="/">
+          <label for="title"
+            >Title:
+            <input type="text" id="title" name="title" />
+          </label>
+          <label for="author"
+            >Author:
+            <input type="text" id="author" name="author" />
+          </label>
+          <label for="pages"
+            >Pages:
+            <input type="text" id="pages" name="pages" />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+
+      <div class="table">
+        <table class="books-table">
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>Status</th>
+          </tr>
+          <tr>
+            <td>The Hobbit</td>
+            <td>J.R.R Tolkien</td>
+            <td>295</td>
+            <td>Not Read</td>
+          </tr>
+        </table>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>
