@@ -1,4 +1,16 @@
 let myLibrary = [];
+const tBody = document.querySelector("tbody");
+const title = document.querySelector("#title");
+const author = document.querySelector("author");
+const pages = document.querySelector("#pages");
+const status = document.querySelector("#status");
+const addBook = document.querySelector("#addbook");
+const deleteBook = document.querySelector("#deletebook");
+
+addBook.addEventListener("click", (e) => {
+  e.preventDefault();
+  addBookToLibrary();
+});
 
 function Book(title, author, pages, status) {
   this.title = title;
@@ -12,6 +24,6 @@ function addBookToLibrary() {
   myLibrary.push(book);
 }
 
-addBookToLibrary();
-
 myLibrary.forEach((book) => console.log(book));
+
+function update() {}
