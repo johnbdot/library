@@ -8,6 +8,7 @@ const status = document.querySelector("#status");
 const addBook = document.querySelector("#addBook");
 const deleteBook = document.querySelector("#deleteBook");
 
+// Add book
 addBook.addEventListener("click", (e) => {
   e.preventDefault();
   addBookToLibrary();
@@ -15,6 +16,7 @@ addBook.addEventListener("click", (e) => {
   clear();
 });
 
+// Book object constructor
 function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
@@ -22,11 +24,18 @@ function Book(title, author, pages, status) {
   this.status = status;
 }
 
+// Create Book object and add to myLibrary array
 function addBookToLibrary() {
+  if (!title.value || !author.value || !pages.value) {
+    alert("Please fill out all fields.");
+    addBook.preventDefault();
+    return;
+  }
   const book = new Book(title.value, author.value, pages.value, status.value);
   myLibrary.push(book);
 }
 
+// Update table after adding book to myLibrary array
 function update() {
   tBody.innerHTML = "";
   myLibrary.forEach((book) => {
@@ -47,9 +56,9 @@ function update() {
   });
 }
 
+// Clear fields after adding book
 function clear() {
   title.value = "";
   author.value = "";
   pages.value = "";
-  status.value = "Status";
 }
