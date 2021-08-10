@@ -5,14 +5,14 @@ const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const status = document.querySelector("#status");
-const addBook = document.querySelector("#addbook");
-const deleteBook = document.querySelector("#deletebook");
+const addBook = document.querySelector("#addBook");
+const deleteBook = document.querySelector("#deleteBook");
 
 addBook.addEventListener("click", (e) => {
   e.preventDefault();
   addBookToLibrary();
   update();
-  console.log(myLibrary);
+  clear();
 });
 
 function Book(title, author, pages, status) {
@@ -37,7 +37,7 @@ function update() {
       <td>${book.pages}</td>
       <td>${book.status}</td>
       <td>
-        <button type="button" class="btn btn-danger btn-sm">
+        <button type="button" class="btn btn-danger btn-sm" id="deleteBook">
           Delete
         </button>
       </td>
@@ -45,4 +45,11 @@ function update() {
     `;
     tBody.insertAdjacentHTML("afterbegin", bookRow);
   });
+}
+
+function clear() {
+  title.value = "";
+  author.value = "";
+  pages.value = "";
+  status.value = "Status";
 }
