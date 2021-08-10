@@ -65,11 +65,11 @@
               </div>
               <div class="col-6">
                 <select
+                  name="status"
                   class="form-select form-select-sm"
-                  aria-label=".form-select-sm example"
                   id="status"
+                  required
                 >
-                  <option value="Status" selected disabled>Status</option>
                   <option value="Reading">Reading</option>
                   <option value="Not Read">Not Read</option>
                   <option value="Read">Read</option>
@@ -77,9 +77,8 @@
               </div>
             </div>
             <div class="mb-3">
-              <button type="submit" id="addBook" class="btn btn-primary">
-                Add Book
-              </button>
+              <input type="submit" id="addBook" class="btn btn-primary" value="Add Book">
+            </input>
             </div>
           </form>
           <!-- Table -->
