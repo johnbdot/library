@@ -23,12 +23,12 @@ function Book(title, author, pages, status) {
   this.status = status;
 }
 
-//
-for (let i = 0; i < deleteBook.length; i++) {
-  deleteBook[i].addEventListener("click", () => {
-    console.log(this);
-  });
-}
+// Delete book
+tBody.addEventListener("click", (e) => {
+  if (e.target.classList[3] === "delete") {
+    console.log("hi");
+  }
+});
 
 // Create Book object and add to myLibrary array
 function addBookToLibrary() {
@@ -44,15 +44,17 @@ function addBookToLibrary() {
 // Update table after adding book to myLibrary array
 function update() {
   tBody.innerHTML = "";
+  let index = -1;
   myLibrary.forEach((book) => {
+    index++;
     const bookRow = `
-    <tr>
+    <tr data-id="${index}">
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.pages}</td>
       <td>${book.status}</td>
       <td>
-        <button type="button" class="btn btn-danger btn-sm" id="deleteBook">
+        <button type="button" class="btn btn-danger btn-sm delete">
           Delete
         </button>
       </td>
