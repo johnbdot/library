@@ -6,14 +6,13 @@ const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const status = document.querySelector("#status");
 const addBook = document.querySelector("#addBook");
-const deleteBook = document.querySelector("#deleteBook");
+const deleteBook = document.querySelectorAll("#deleteBook");
 
 // Add book
 addBook.addEventListener("click", (e) => {
   e.preventDefault();
   addBookToLibrary();
   update();
-  clear();
 });
 
 // Book object constructor
@@ -24,15 +23,22 @@ function Book(title, author, pages, status) {
   this.status = status;
 }
 
+//
+for (let i = 0; i < deleteBook.length; i++) {
+  deleteBook[i].addEventListener("click", () => {
+    console.log(this);
+  });
+}
+
 // Create Book object and add to myLibrary array
 function addBookToLibrary() {
   if (!title.value || !author.value || !pages.value) {
     alert("Please fill out all fields.");
-    addBook.preventDefault();
     return;
   }
   const book = new Book(title.value, author.value, pages.value, status.value);
   myLibrary.push(book);
+  clear();
 }
 
 // Update table after adding book to myLibrary array
