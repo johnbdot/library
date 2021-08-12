@@ -6,7 +6,6 @@ const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const status = document.querySelector("#status");
 const addBook = document.querySelector("#addBook");
-const deleteBook = document.querySelectorAll("#deleteBook");
 
 // Add book
 addBook.addEventListener("click", (e) => {
