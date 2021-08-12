@@ -13,6 +13,7 @@ addBook.addEventListener("click", (e) => {
   e.preventDefault();
   addBookToLibrary();
   update();
+  console.log(myLibrary);
 });
 
 // Book object constructor
@@ -25,9 +26,20 @@ function Book(title, author, pages, status) {
 
 // Delete book
 tBody.addEventListener("click", (e) => {
-  if (e.target.classList[3] === "delete") {
-    console.log("hi");
+  const currentTarget = e.target;
+  const tableRow = currentTarget.parentElement.parentElement;
+  const dataTitle = currentTarget.dataset.title;
+  const bookTitle = myLibrary.find((o) => o.title === dataTitle);
+
+  if (currentTarget.classList[3] === "delete") {
+    myLibrary.splice(
+      myLibrary.findIndex((book) => book.title === dataTitle),
+      1
+    );
+    tableRow.remove();
   }
+
+  console.log(myLibrary);
 });
 
 // Create Book object and add to myLibrary array
@@ -44,17 +56,16 @@ function addBookToLibrary() {
 // Update table after adding book to myLibrary array
 function update() {
   tBody.innerHTML = "";
-  let index = -1;
+
   myLibrary.forEach((book) => {
-    index++;
     const bookRow = `
-    <tr data-id="${index}">
+    <tr>
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.pages}</td>
       <td>${book.status}</td>
       <td>
-        <button type="button" class="btn btn-danger btn-sm delete">
+        <button type="button" class="btn btn-danger btn-sm delete" data-title="${book.title}">
           Delete
         </button>
       </td>
