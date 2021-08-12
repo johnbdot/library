@@ -12,8 +12,7 @@ const deleteBook = document.querySelectorAll("#deleteBook");
 addBook.addEventListener("click", (e) => {
   e.preventDefault();
   addBookToLibrary();
-  update();
-  console.log(myLibrary);
+  addBookToTable();
 });
 
 // Book object constructor
@@ -29,7 +28,6 @@ tBody.addEventListener("click", (e) => {
   const currentTarget = e.target;
   const tableRow = currentTarget.parentElement.parentElement;
   const dataTitle = currentTarget.dataset.title;
-  const bookTitle = myLibrary.find((o) => o.title === dataTitle);
 
   if (currentTarget.classList[3] === "delete") {
     myLibrary.splice(
@@ -38,8 +36,6 @@ tBody.addEventListener("click", (e) => {
     );
     tableRow.remove();
   }
-
-  console.log(myLibrary);
 });
 
 // Create Book object and add to myLibrary array
@@ -54,7 +50,7 @@ function addBookToLibrary() {
 }
 
 // Update table after adding book to myLibrary array
-function update() {
+function addBookToTable() {
   tBody.innerHTML = "";
 
   myLibrary.forEach((book) => {
