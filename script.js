@@ -7,6 +7,12 @@ const pages = document.querySelector("#pages");
 const status = document.querySelector("#status");
 const addBook = document.querySelector("#addBook");
 
+// Check localStorage
+retrieveStorage();
+if (localStorage.getItem("myLibrary")) {
+  addBookToTable();
+}
+
 // Book object constructor
 function Book(title, author, pages, status) {
   this.title = title;
@@ -20,6 +26,7 @@ addBook.addEventListener("click", (e) => {
   e.preventDefault();
   addBookToLibrary();
   addBookToTable();
+  clearFields();
 });
 
 // Delete book
@@ -35,6 +42,7 @@ tBody.addEventListener("click", (e) => {
     );
     tableRow.remove();
   }
+  storeStorage();
 });
 
 // Create Book object and add to myLibrary array
@@ -45,13 +53,13 @@ function addBookToLibrary() {
     return;
   }
   myLibrary.push(book);
-  clearFields();
+  storeStorage();
 }
 
 // Update table after adding book to myLibrary array
 function addBookToTable() {
+  retrieveStorage();
   tBody.innerHTML = "";
-
   myLibrary.forEach((book) => {
     const bookRow = `
     <tr>
@@ -75,4 +83,13 @@ function clearFields() {
   title.value = "";
   author.value = "";
   pages.value = "";
+}
+
+// Web Storage API
+function storeStorage() {
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+
+function retrieveStorage() {
+  myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
 }
