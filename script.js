@@ -1,5 +1,13 @@
-let myLibrary = [];
+let myLibrary;
 
+const DEFAULT = [
+  {
+    title: "The Lord of the Rings",
+    author: "J.R.R. Tolkien",
+    pages: 295,
+    status: "Read",
+  },
+];
 const tBody = document.querySelector("tbody");
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
@@ -10,6 +18,9 @@ const addBook = document.querySelector("#addBook");
 // Check localStorage
 retrieveStorage();
 if (localStorage.getItem("myLibrary")) {
+  addBookToTable();
+} else {
+  myLibrary = DEFAULT;
   addBookToTable();
 }
 
@@ -58,7 +69,6 @@ function addBookToLibrary() {
 
 // Update table after adding book to myLibrary array
 function addBookToTable() {
-  retrieveStorage();
   tBody.innerHTML = "";
   myLibrary.forEach((book) => {
     const bookRow = `
