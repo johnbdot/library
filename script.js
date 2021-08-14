@@ -69,21 +69,21 @@ statusButton.forEach((e) => {
   e.addEventListener("click", (e) => {
     const currentTarget = e.target;
     const dataset = currentTarget.dataset;
-    const currentStatusHTML = currentTarget.innerHTML;
     const currentIndex = myLibrary.findIndex(
       (book) => book.title === dataset.title
     );
     const currentObjectStatus = myLibrary[currentIndex].status;
 
-    if (currentStatusHTML === "Reading") {
+    if (currentObjectStatus === "Reading") {
       myLibrary[currentIndex].status = "Not Read";
-    } else if (currentStatusHTML === "Not Read") {
+      currentTarget.innerHTML = "Not Read";
+    } else if (currentObjectStatus === "Not Read") {
       myLibrary[currentIndex].status = "Read";
-    } else if (currentStatusHTML === "Read") {
+      currentTarget.innerHTML = "Read";
+    } else if (currentObjectStatus === "Read") {
       myLibrary[currentIndex].status = "Reading";
+      currentTarget.innerHTML = "Reading";
     }
-    currentTarget.innerHTML = currentObjectStatus;
-    console.log(myLibrary);
 
     storeStorage();
   });
