@@ -41,8 +41,11 @@ addBook.addEventListener("click", (e) => {
     return;
   }
   myLibrary.push(book);
+  // Clear fields
+  title.value = "";
+  author.value = "";
+  pages.value = "";
   storeStorage();
-  clearFields();
   addBookToTable();
 });
 
@@ -104,13 +107,6 @@ function addBookToTable() {
     `;
     tBody.insertAdjacentHTML("afterbegin", bookRow);
   });
-}
-
-// Clear fields after adding book
-function clearFields() {
-  title.value = "";
-  author.value = "";
-  pages.value = "";
 }
 
 // Web Storage API
