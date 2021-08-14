@@ -34,38 +34,60 @@ function Book(title, author, pages, status) {
 
 // Add book
 addBook.addEventListener("click", (e) => {
+  const book = new Book(title.value, author.value, pages.value, status.value);
   e.preventDefault();
   if (!title.value || !author.value || !pages.value) {
     alert("Please fill out all fields.");
     return;
   }
-  addBookToLibrary();
+  myLibrary.push(book);
+  storeStorage();
   addBookToTable();
   clearFields();
 });
 
 // Delete book
-tBody.addEventListener("click", (e) => {
-  const currentTarget = e.target;
-  const tableRow = currentTarget.parentElement.parentElement;
-  const dataTitle = currentTarget.dataset.title;
+const deleteButton = document.querySelectorAll("#deleteButton");
+deleteButton.forEach((e) => {
+  e.addEventListener("click", (e) => {
+    const currentTarget = e.target;
+    const tableRow = currentTarget.parentElement.parentElement;
 
-  if (currentTarget.classList[3] === "delete") {
     myLibrary.splice(
-      myLibrary.findIndex((book) => book.title === dataTitle),
+      myLibrary.findIndex((book) => book.title === currentTarget.dataset.title),
       1
     );
     tableRow.remove();
-  }
-  storeStorage();
+
+    storeStorage();
+  });
 });
 
-// Create Book object and add to myLibrary array
-function addBookToLibrary() {
-  const book = new Book(title.value, author.value, pages.value, status.value);
-  myLibrary.push(book);
-  storeStorage();
-}
+// Change book status
+const statusButton = document.querySelectorAll(".changeStatus");
+statusButton.forEach((e) => {
+  e.addEventListener("click", (e) => {
+    const currentTarget = e.target;
+    const dataset = currentTarget.dataset;
+    const currentStatusHTML = currentTarget.innerHTML;
+    const currentIndex = myLibrary.findIndex(
+      (book) => book.title === dataset.title
+    );
+    const currentObjectStatus = myLibrary[currentIndex].status;
+
+    if (currentStatusHTML === "Reading") {
+      myLibrary[currentIndex].status = "Not Read";
+    } else if (currentStatusHTML === "Not Read") {
+      myLibrary[currentIndex].status = "Read";
+    } else if (currentStatusHTML === "Read") {
+      myLibrary[currentIndex].status = "Reading";
+    }
+    currentTarget.innerHTML = currentObjectStatus;
+    console.log(myLibrary);
+
+    storeStorage();
+  });
+});
 
 // Update table after adding book to myLibrary array
 function addBookToTable() {
@@ -76,9 +98,9 @@ function addBookToTable() {
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.pages}</td>
-      <td>${book.status}</td>
+      <td class="changeStatus" data-status="status" data-title="${book.title}">${book.status}</td>
       <td>
-        <button type="button" class="btn btn-danger btn-sm delete" data-title="${book.title}">
+        <button type="button" class="btn btn-danger btn-sm" data-title="${book.title}" id="deleteButton">
           Delete
         </button>
       </td>
