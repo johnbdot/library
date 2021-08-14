@@ -4,7 +4,7 @@ const DEFAULT = [
   {
     title: "The Lord of the Rings",
     author: "J.R.R. Tolkien",
-    pages: 295,
+    pages: "295",
     status: "Read",
   },
 ];
@@ -44,51 +44,45 @@ addBook.addEventListener("click", (e) => {
   storeStorage();
   clearFields();
   addBookToTable();
-  location.reload();
 });
 
 // Delete book
-const deleteButton = document.querySelectorAll("#deleteButton");
-deleteButton.forEach((e) => {
-  e.addEventListener("click", (e) => {
-    const currentTarget = e.target;
-    const tableRow = currentTarget.parentElement.parentElement;
+tBody.addEventListener("click", (e) => {
+  const currentTarget = e.target;
+  const dataDelete = currentTarget.dataset.delete;
+  const tableRow = currentTarget.parentElement.parentElement;
 
+  if (dataDelete === "delete") {
     myLibrary.splice(
       myLibrary.findIndex((book) => book.title === currentTarget.dataset.title),
       1
     );
     tableRow.remove();
-
     storeStorage();
-  });
+  }
 });
 
 // Change book status
-const statusButton = document.querySelectorAll(".changeStatus");
-statusButton.forEach((e) => {
-  e.addEventListener("click", (e) => {
-    const currentTarget = e.target;
-    const dataset = currentTarget.dataset;
-    const currentIndex = myLibrary.findIndex(
-      (book) => book.title === dataset.title
-    );
-    const currentObjectStatus = myLibrary[currentIndex].status;
-    const statusFont = `<i class="fas fa-exchange-alt"></i>`;
+tBody.addEventListener("click", (e) => {
+  const currentTarget = e.target;
+  const currentIndex = myLibrary.findIndex(
+    (book) => book.title === currentTarget.dataset.title
+  );
+  const currentObjectStatus = myLibrary[currentIndex].status;
+  const statusFont = `<i class="fas fa-exchange-alt"></i>`;
 
-    if (currentObjectStatus === "Reading") {
-      myLibrary[currentIndex].status = "Not Read";
-      currentTarget.innerHTML = `Not Read ${statusFont}`;
-    } else if (currentObjectStatus === "Not Read") {
-      myLibrary[currentIndex].status = "Read";
-      currentTarget.innerHTML = `Read ${statusFont}`;
-    } else if (currentObjectStatus === "Read") {
-      myLibrary[currentIndex].status = "Reading";
-      currentTarget.innerHTML = `Reading ${statusFont}`;
-    }
-
-    storeStorage();
-  });
+  if (currentObjectStatus === "Reading") {
+    myLibrary[currentIndex].status = "Not Read";
+    currentTarget.innerHTML = `Not Read ${statusFont}`;
+  } else if (currentObjectStatus === "Not Read") {
+    myLibrary[currentIndex].status = "Read";
+    currentTarget.innerHTML = `Read ${statusFont}`;
+  } else if (currentObjectStatus === "Read") {
+    myLibrary[currentIndex].status = "Reading";
+    currentTarget.innerHTML = `Reading ${statusFont}`;
+  }
+  console.table(myLibrary);
+  storeStorage();
 });
 
 // Update table after adding book to myLibrary array
@@ -100,9 +94,9 @@ function addBookToTable() {
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.pages}</td>
-      <td class="changeStatus" data-title="${book.title}">${book.status} <i class="fas fa-exchange-alt"></i></td>
+      <td class="changeStatus" data-title="${book.title}" data-status="status">${book.status} <i class="fas fa-exchange-alt"></i></td>
       <td>
-        <button type="button" class="btn btn-danger btn-sm" data-title="${book.title}" id="deleteButton">
+        <button type="button" class="btn btn-danger btn-sm" data-title="${book.title}" data-delete="delete" id="deleteButton">
           Delete
         </button>
       </td>
