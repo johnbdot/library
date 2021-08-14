@@ -15,7 +15,7 @@ const pages = document.querySelector("#pages");
 const status = document.querySelector("#status");
 const addBook = document.querySelector("#addBook");
 
-// Check localStorage
+// Check localStorage on page load
 retrieveStorage();
 if (localStorage.getItem("myLibrary")) {
   addBookToTable();
@@ -73,16 +73,17 @@ statusButton.forEach((e) => {
       (book) => book.title === dataset.title
     );
     const currentObjectStatus = myLibrary[currentIndex].status;
+    const exchangeFont = `&nbsp;<i class="fas fa-exchange-alt"></i>`;
 
     if (currentObjectStatus === "Reading") {
       myLibrary[currentIndex].status = "Not Read";
-      currentTarget.innerHTML = "Not Read";
+      currentTarget.innerHTML = `Not Read ${exchangeFont}`;
     } else if (currentObjectStatus === "Not Read") {
       myLibrary[currentIndex].status = "Read";
-      currentTarget.innerHTML = "Read";
+      currentTarget.innerHTML = `Read ${exchangeFont}`;
     } else if (currentObjectStatus === "Read") {
       myLibrary[currentIndex].status = "Reading";
-      currentTarget.innerHTML = "Reading";
+      currentTarget.innerHTML = `Reading ${exchangeFont}`;
     }
 
     storeStorage();
@@ -98,7 +99,7 @@ function addBookToTable() {
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.pages}</td>
-      <td class="changeStatus" data-status="status" data-title="${book.title}">${book.status}</td>
+      <td class="changeStatus" data-status="status" data-title="${book.title}">${book.status}&nbsp;&nbsp;<i class="fas fa-exchange-alt"></i></td>
       <td>
         <button type="button" class="btn btn-danger btn-sm" data-title="${book.title}" id="deleteButton">
           Delete
