@@ -74,16 +74,17 @@ statusButton.forEach((e) => {
       (book) => book.title === dataset.title
     );
     const currentObjectStatus = myLibrary[currentIndex].status;
+    const statusFont = `<i class="fas fa-exchange-alt"></i>`;
 
     if (currentObjectStatus === "Reading") {
       myLibrary[currentIndex].status = "Not Read";
-      currentTarget.innerHTML = "Not Read";
+      currentTarget.innerHTML = `Not Read ${statusFont}`;
     } else if (currentObjectStatus === "Not Read") {
       myLibrary[currentIndex].status = "Read";
-      currentTarget.innerHTML = "Read";
+      currentTarget.innerHTML = `Read ${statusFont}`;
     } else if (currentObjectStatus === "Read") {
       myLibrary[currentIndex].status = "Reading";
-      currentTarget.innerHTML = "Reading";
+      currentTarget.innerHTML = `Reading ${statusFont}`;
     }
 
     storeStorage();
@@ -99,7 +100,7 @@ function addBookToTable() {
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.pages}</td>
-      <td class="changeStatus" data-title="${book.title}">${book.status}</td>
+      <td class="changeStatus" data-title="${book.title}">${book.status} <i class="fas fa-exchange-alt"></i></td>
       <td>
         <button type="button" class="btn btn-danger btn-sm" data-title="${book.title}" id="deleteButton">
           Delete
