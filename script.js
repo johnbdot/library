@@ -35,6 +35,10 @@ function Book(title, author, pages, status) {
 // Add book
 addBook.addEventListener("click", (e) => {
   e.preventDefault();
+  if (!title.value || !author.value || !pages.value) {
+    alert("Please fill out all fields.");
+    return;
+  }
   addBookToLibrary();
   addBookToTable();
   clearFields();
@@ -59,10 +63,6 @@ tBody.addEventListener("click", (e) => {
 // Create Book object and add to myLibrary array
 function addBookToLibrary() {
   const book = new Book(title.value, author.value, pages.value, status.value);
-  if (!title.value || !author.value || !pages.value) {
-    alert("Please fill out all fields.");
-    return;
-  }
   myLibrary.push(book);
   storeStorage();
 }
