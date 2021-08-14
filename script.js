@@ -42,8 +42,9 @@ addBook.addEventListener("click", (e) => {
   }
   myLibrary.push(book);
   storeStorage();
-  addBookToTable();
   clearFields();
+  addBookToTable();
+  location.reload();
 });
 
 // Delete book
@@ -73,17 +74,16 @@ statusButton.forEach((e) => {
       (book) => book.title === dataset.title
     );
     const currentObjectStatus = myLibrary[currentIndex].status;
-    const exchangeFont = `&nbsp;<i class="fas fa-exchange-alt"></i>`;
 
     if (currentObjectStatus === "Reading") {
       myLibrary[currentIndex].status = "Not Read";
-      currentTarget.innerHTML = `Not Read ${exchangeFont}`;
+      currentTarget.innerHTML = "Not Read";
     } else if (currentObjectStatus === "Not Read") {
       myLibrary[currentIndex].status = "Read";
-      currentTarget.innerHTML = `Read ${exchangeFont}`;
+      currentTarget.innerHTML = "Read";
     } else if (currentObjectStatus === "Read") {
       myLibrary[currentIndex].status = "Reading";
-      currentTarget.innerHTML = `Reading ${exchangeFont}`;
+      currentTarget.innerHTML = "Reading";
     }
 
     storeStorage();
@@ -99,7 +99,7 @@ function addBookToTable() {
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.pages}</td>
-      <td class="changeStatus" data-status="status" data-title="${book.title}">${book.status}&nbsp;&nbsp;<i class="fas fa-exchange-alt"></i></td>
+      <td class="changeStatus" data-title="${book.title}">${book.status}</td>
       <td>
         <button type="button" class="btn btn-danger btn-sm" data-title="${book.title}" id="deleteButton">
           Delete
