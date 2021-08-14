@@ -84,7 +84,6 @@ tBody.addEventListener("click", (e) => {
     myLibrary[currentIndex].status = "Reading";
     currentTarget.innerHTML = `Reading ${statusFont}`;
   }
-  console.table(myLibrary);
   storeStorage();
 });
 
@@ -99,9 +98,7 @@ function addBookToTable() {
       <td>${book.pages}</td>
       <td class="changeStatus" data-title="${book.title}" data-status="status">${book.status} <i class="fas fa-exchange-alt"></i></td>
       <td>
-        <button type="button" class="btn btn-danger btn-sm" data-title="${book.title}" data-delete="delete" id="deleteButton">
-          Delete
-        </button>
+        <button class="btn btn-danger btn-sm" data-title="${book.title}" data-delete="delete">Delete</button>
       </td>
     </tr>
     `;
